@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
 import data from "./data";
 import { Link } from "react-router-dom";
 
@@ -8,9 +9,9 @@ function Products() {
   return (
     <div className="app">
       <div className="grid-container">
-        {data.map((vehicle, index) => {
+        {data.map((vehicle, index) => (
           <Link
-            to={`/product/${vehicle.id}`}
+            to={`/products/${vehicle.id}`}
             key={vehicle.id}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
@@ -19,16 +20,20 @@ function Products() {
               <div className="image-container">
                 <img src={vehicle.img} alt={vehicle.trim} />
               </div>
+              <div className="details">
+                <h2>
+                  {vehicle.make} {vehicle.model}
+                </h2>
+                <h3>{vehicle.trim}</h3>
+              </div>
             </div>
-            <div className="details">
-              <h2>
-                {vehicle.make} {vehicle.model}
-              </h2>
-              <h3>{vehicle.trim}</h3>
-            </div>
-          </Link>;
-        })}
+          </Link>
+        ))}
       </div>
+      <br />
+      <Link to="/" className="button">
+        Go Home
+      </Link>
     </div>
   );
 }
